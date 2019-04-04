@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 2, 2019 9:01:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Purchase" table="purchase" catalog="dealership" optimistic-lock="version">
+        <id name="purchaseKey" type="java.lang.Integer">
+            <column name="purchaseKey" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="automobile" class="pojos.Automobile" fetch="select">
+            <column name="VIN" length="17" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customer" class="pojos.Customer" fetch="select">
+            <column name="customerKey" length="8" not-null="true" />
+        </many-to-one>
+        <many-to-one name="salesperson" class="pojos.Salesperson" fetch="select">
+            <column name="salesPersonKey" length="5" not-null="true" />
+        </many-to-one>
+        <property name="dateSold" type="date">
+            <column name="dateSold" length="10" not-null="true" />
+        </property>
+        <property name="odometer" type="int">
+            <column name="odometer" not-null="true" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

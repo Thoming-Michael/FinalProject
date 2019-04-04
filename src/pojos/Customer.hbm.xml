@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 2, 2019 9:01:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Customer" table="customer" catalog="dealership" optimistic-lock="version">
+        <id name="customerKey" type="string">
+            <column name="customerKey" length="8" />
+            <generator class="assigned" />
+        </id>
+        <property name="lastName" type="string">
+            <column name="lastName" length="45" not-null="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="firstName" length="45" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="12" not-null="true" />
+        </property>
+        <property name="street1" type="string">
+            <column name="street1" length="45" />
+        </property>
+        <property name="street2" type="string">
+            <column name="street2" length="45" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="20" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="2" />
+        </property>
+        <property name="zipcode" type="string">
+            <column name="zipcode" length="5" />
+        </property>
+        <set name="purchases" table="purchase" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customerKey" length="8" not-null="true" />
+            </key>
+            <one-to-many class="pojos.Purchase" />
+        </set>
+    </class>
+</hibernate-mapping>
